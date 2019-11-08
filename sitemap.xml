@@ -3,26 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://appsecradar.net/</loc>
     <lastmod>1986-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/blog1/</loc>
+    <loc>https://appsecradar.net/post/blog1/</loc>
     <lastmod>1986-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://appsecradar.net/post/</loc>
     <lastmod>1986-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://appsecradar.net/categories/</loc>
   </url>
   
   <url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://appsecradar.net/tags/</loc>
   </url>
   
 </urlset>
