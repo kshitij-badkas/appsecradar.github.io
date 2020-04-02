@@ -1,0 +1,4 @@
+[submodule "appsecradar.github.io"]
+	path = appsecradar.github.io
+	url = https://github.com/kshitij-badkas/appsecradar.github.io.git
+	branch = master
