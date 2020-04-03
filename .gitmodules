@@ -1,7 +1,0 @@
-[submodule "appsecradar.github.io"]
-	path = appsecradar.github.io
-	url = https://github.com/kshitij-badkas/appsecradar.github.io.git
-	branch = master
-[submodule "demo-site/themes/hello-friend"]
-	path = demo-site/themes/hello-friend
-	url = https://github.com/panr/hugo-theme-hello-friend.git
