@@ -6,10 +6,22 @@
     <description>Recent content in Posts on appsecradar.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 14:16:31 +0530</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 22:58:46 +0530</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hello, World!</title>
+      <link>/posts/demo/</link>
+      <pubDate>Fri, 03 Apr 2020 22:58:46 +0530</pubDate>
+      
+      <guid>/posts/demo/</guid>
+      <description>This is a Second demo test page. Don&amp;rsquo;t take the content here too seriously.
+ quotes from Mr. Robot
+ What I&amp;rsquo;m about to tell you is top secret.
+There&amp;rsquo;s a powerful group of people out there that are secretly running the world. I&amp;rsquo;m talking about the guys, no one knows about the guys who are invisible. The top 1% of the top 1%. The guys that play God without permission.</description>
+    </item>
     
     <item>
       <title>Hello, World!</title>
@@ -17,9 +29,13 @@
       <pubDate>Fri, 03 Apr 2020 14:16:31 +0530</pubDate>
       
       <guid>/posts/hello/</guid>
-      <description> This is a demo test page. Don&amp;rsquo;t take the content here too seriously.
-&amp;ldquo;Hello, friend?&amp;rdquo; That&amp;rsquo;s lame. Maybe I should give you a name&amp;hellip; But that&amp;rsquo;s a slippery slope. You&amp;rsquo;re only in my head. We have to remember that&amp;hellip; Shit. It&amp;rsquo;s actually happened. I&amp;rsquo;m talking to an imaginary person.
-— Mr. Robot - eps1.0_hellofriend.mov
+      <description>This is a demo test page. Don&amp;rsquo;t take the content here too seriously.
+ quotes from Mr. Robot
+ &amp;ldquo;Hello, friend?&amp;rdquo; That&amp;rsquo;s lame.
+Maybe I should give you a name&amp;hellip;
+But that&amp;rsquo;s a slippery slope. You&amp;rsquo;re only in my head. We have to remember that&amp;hellip;
+Shit. It&amp;rsquo;s actually happened. I&amp;rsquo;m talking to an imaginary person.
+ — Mr. Robot - eps1.0_hellofriend.mov
  </description>
     </item>
     
