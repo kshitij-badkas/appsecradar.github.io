@@ -6,10 +6,32 @@
     <description>Recent content on appsecradar.net</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 22:58:46 +0530</lastBuildDate>
+    <lastBuildDate>Sun, 05 Apr 2020 20:38:53 +0530</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Contact</title>
+      <link>/contact/</link>
+      <pubDate>Sun, 05 Apr 2020 20:38:53 +0530</pubDate>
+      
+      <guid>/contact/</guid>
+      <description>Welcome to the Contact page.
+Contact page coming soon.
+ Thanks for stopping by!</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Sun, 05 Apr 2020 20:38:36 +0530</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Welcome to the About page.
+About page coming soon.
+ Thanks for stopping by!</description>
+    </item>
     
     <item>
       <title>Hello, World!</title>
