@@ -6,58 +6,40 @@
     <description>Recent content on APPSECRADAR | HACKING | CODING</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2020 20:38:53 +0530</lastBuildDate>
+    <lastBuildDate>Tue, 07 Apr 2020 20:12:33 +0530</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Contact</title>
-      <link>/contact/</link>
-      <pubDate>Sun, 05 Apr 2020 20:38:53 +0530</pubDate>
+      <title>appsecradar welcomes you</title>
+      <link>/posts/welcome/</link>
+      <pubDate>Tue, 07 Apr 2020 20:12:33 +0530</pubDate>
       
-      <guid>/contact/</guid>
-      <description>Welcome to the Contact page.
-Contact page coming soon.
- Thanks for stopping by!</description>
+      <guid>/posts/welcome/</guid>
+      <description>A warm welcome dear friends to appsecradar.net. My name is Kshitij Badkas and here you can find awesome stuff and writeups in hacking, coding, bug-bounty hunting, and much much more&amp;hellip; Blogs &amp;amp; Good Vibes!
+ Currently, I am focusing on my OSCP preparation so the writeups would be of OSCP-like HTB machines and some VulnHub boxes. My learning resources include greats like Ippsec, Stok, Nahamsec, TCM, 0xdf, and TJnull to name a few.</description>
     </item>
     
     <item>
-      <title>About</title>
+      <title>about</title>
       <link>/about/</link>
-      <pubDate>Sun, 05 Apr 2020 20:38:36 +0530</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/about/</guid>
-      <description>Welcome to the About page.
-About page coming soon.
- Thanks for stopping by!</description>
+      <description>Namaste 🙏 and hello friends, my name is Kshitij Badkas, a cyber security researcher from भारत (India). Currently, I am preparing for the OSCP exam. I have an year of experience working in the development and security field.
+My vision and mission is to build a good career in Cyber-Security along with strong programming skills across multiple domains. With this blog, I would like share my knowledge in the community, to learn as much I can, help beginners to explore Security and give everything I learn back to the world.</description>
     </item>
     
     <item>
-      <title>Hello, World!</title>
-      <link>/posts/demo/</link>
-      <pubDate>Fri, 03 Apr 2020 22:58:46 +0530</pubDate>
+      <title>contact</title>
+      <link>/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/posts/demo/</guid>
-      <description>This is a Second demo test page. Don&amp;rsquo;t take the content here too seriously.
- quotes from Mr. Robot
- What I&amp;rsquo;m about to tell you is top secret.
-There&amp;rsquo;s a powerful group of people out there that are secretly running the world. I&amp;rsquo;m talking about the guys, no one knows about the guys who are invisible. The top 1% of the top 1%. The guys that play God without permission.</description>
-    </item>
-    
-    <item>
-      <title>Hello, World!</title>
-      <link>/posts/hello/</link>
-      <pubDate>Fri, 03 Apr 2020 14:16:31 +0530</pubDate>
-      
-      <guid>/posts/hello/</guid>
-      <description>This is a demo test page. Don&amp;rsquo;t take the content here too seriously.
- quotes from Mr. Robot
- &amp;ldquo;Hello, friend?&amp;rdquo; That&amp;rsquo;s lame.
-Maybe I should give you a name&amp;hellip;
-But that&amp;rsquo;s a slippery slope. You&amp;rsquo;re only in my head. We have to remember that&amp;hellip;
-Shit. It&amp;rsquo;s actually happened. I&amp;rsquo;m talking to an imaginary person.
- — Mr. Robot - eps1.0_hellofriend.mov
+      <guid>/contact/</guid>
+      <description>Kshitij Badkas  Email
+GitHub
+Twitter
  </description>
     </item>
     
