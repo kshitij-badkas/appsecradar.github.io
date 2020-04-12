@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on APPSECRADAR | HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    <title>Categories on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
     <link>/categories/</link>
-    <description>Recent content in Categories on APPSECRADAR | HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
+    <description>Recent content in Categories on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 12 Apr 2020 10:48:17 +0530</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>HTB</title>
+      <link>/categories/htb/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/categories/htb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OSCP</title>
+      <link>/categories/oscp/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/categories/oscp/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

@@ -1,14 +1,78 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on APPSECRADAR | HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    <title>Tags on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
     <link>/tags/</link>
-    <description>Recent content in Tags on APPSECRADAR | HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
+    <description>Recent content in Tags on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Sun, 12 Apr 2020 10:48:17 +0530</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CTF</title>
+      <link>/tags/ctf/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/ctf/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTB</title>
+      <link>/tags/htb/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/htb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>medium</title>
+      <link>/tags/medium/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/medium/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>OSCP</title>
+      <link>/tags/oscp/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/oscp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>real-life</title>
+      <link>/tags/real-life/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/real-life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unbox</title>
+      <link>/tags/unbox/</link>
+      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
+      
+      <guid>/tags/unbox/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

