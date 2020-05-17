@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>real-life on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
-    <link>/tags/real-life/</link>
-    <description>Recent content in real-life on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
+    <title>walkthrough on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    <link>/tags/walkthrough/</link>
+    <description>Recent content in walkthrough on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 06 May 2020 11:18:30 +0530</lastBuildDate>
     
-	<atom:link href="/tags/real-life/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/walkthrough/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/posts/intigriti-xss-challenge/</guid>
       <description>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
  Introduction The Intigriti Easter XSS challenge was open from April 13 to Aril 19. I know I&amp;rsquo;m a little late to the party but this challenge took a lot of time for me to understand. Like many, I couldn&amp;rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it.</description>
-    </item>
-    
-    <item>
-      <title>Unboxing SolidState</title>
-      <link>/posts/htb-walkthrough-solidstate/</link>
-      <pubDate>Sun, 12 Apr 2020 10:48:17 +0530</pubDate>
-      
-      <guid>/posts/htb-walkthrough-solidstate/</guid>
-      <description>Introduction: Unboxing SolidState; a fun box by creator ch33zplz - This wasn&amp;rsquo;t my first box on HTB but still I&amp;rsquo;ll start my blog series with this. You will come to know why I am giving such an honour to this box. Just stay with me till the end. I thoroughly enjoyed solving this box &amp;amp; the &amp;lsquo;State&amp;rsquo; of satisfaction after getting root was totally something else! I promise, by the end, it will be a &amp;lsquo;Solid&amp;rsquo; stroll down your memory lane!</description>
     </item>
     
   </channel>

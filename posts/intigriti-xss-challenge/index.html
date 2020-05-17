@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Solving Intigriti Easter XSS Challenge without Burp Suite! :: APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
+ Introduction The Intigriti Easter XSS challenge was open from April 13 to Aril 19. I know I&amp;rsquo;m a little late to the party but this challenge took a lot of time for me to understand. Like many, I couldn&amp;rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/intigriti-xss-challenge/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/arrow-p-2.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Solving Intigriti Easter XSS Challenge without Burp Suite!"/>
+<meta name="twitter:description" content="It&#39;s been a while for a new post. And today we&#39;re going to solve the Intigriti&#39;s Easter XSS challenge using only the Browser&#39;s Developer Tools and without Burp Suite! This challenge is not live right now but after going through the writeup you&#39;ll learn so much that you&#39;ll crave for XSS! So let&#39;s just jump in! A big  shoutout to [@stok](https://twitter.com/stokfredrik &#34;Follow STOK&#34;) and [@securinti](https://twitter.com/securinti &#34;Follow Inti De Ceukelaire&#34;) for their awesome walkthrough video."/>
+
+
+
+<meta property="og:title" content="Solving Intigriti Easter XSS Challenge without Burp Suite!" />
+<meta property="og:description" content="It&#39;s been a while for a new post. And today we&#39;re going to solve the Intigriti&#39;s Easter XSS challenge using only the Browser&#39;s Developer Tools and without Burp Suite! This challenge is not live right now but after going through the writeup you&#39;ll learn so much that you&#39;ll crave for XSS! So let&#39;s just jump in! A big  shoutout to [@stok](https://twitter.com/stokfredrik &#34;Follow STOK&#34;) and [@securinti](https://twitter.com/securinti &#34;Follow Inti De Ceukelaire&#34;) for their awesome walkthrough video." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/intigriti-xss-challenge/" />
+<meta property="article:published_time" content="2020-05-06T11:18:30+05:30" />
+<meta property="article:modified_time" content="2020-05-06T11:18:30+05:30" /><meta property="og:site_name" content="APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="/contact">contact</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">about</a></li>
+      
+    
+      
+        <li><a href="/contact">contact</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/posts/intigriti-xss-challenge/">Solving Intigriti Easter XSS Challenge without Burp Suite!</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-05-06
+        </span>
+
+        
+          
+        
+      
+
+      <span class="post-author">— by Kshitij Badkas</span>
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/xss/">XSS</a>&nbsp;
+        
+          #<a href="/tags/web-app/">web-app</a>&nbsp;
+        
+          #<a href="/tags/real-life/">real-life</a>&nbsp;
+        
+          #<a href="/tags/walkthrough/">walkthrough</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/intigriti-xss-challenge/intigriti-challenge.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <blockquote>
+<p><em>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.</em></p>
+</blockquote>
+<h3 id="introduction">Introduction</h3>
+<p>The Intigriti Easter XSS challenge was open from April 13 to Aril 19. I know I&rsquo;m a little late to the party but this challenge took a lot of time for me to understand. Like many, I couldn&rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it. But that someone was none other than our dear @stok! To solve this challenge, there are some conditions we&rsquo;re given. Let&rsquo;s start by looking at the hints and let the fun begin!</p>
+<p>UPDATE - <a href="https://challenge.intigriti.io/">Intigriti&rsquo;s May XSS challenge</a> is live!</p>
+<h3 id="the-hints">The Hints</h3>
+<p>We are already provided with some Hints.</p>
+<p><img src="/img/intigriti-xss-challenge/1.hints.png" alt="img"></p>
+<p>Why no self XSS ?</p>
+<blockquote>
+<p>The need for an external delivery mechanism for the attack means that the impact of reflected XSS is generally less severe than stored XSS, where a self-contained attack can be delivered within the vulnerable application itself.</p>
+</blockquote>
+<p>OK, so we want the impact to be more severe, hence no self-XSS.</p>
+<p>The second hint and the most important one to note - Should bypass CSP. Hmm sounds cool. But what is CSP?</p>
+<blockquote>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Mozilla Developer Network - CSP</a></p>
+<p>Content Security Policy (CSP) is an added layer of security that helps to detect and mitigate certain types of attacks, including Cross Site Scripting (XSS) and data injection attacks. These attacks are used for everything from data theft to site defacement to distribution of malware.	CSP is designed to be fully backward compatible (except CSP version 2 where there are some explicitly-mentioned inconsistencies in backward compatibility; more details here section 1.1). Browsers that don&rsquo;t support it still work with servers that implement it, and vice-versa: browsers that don&rsquo;t support CSP simply ignore it, functioning as usual, defaulting to the standard same-origin policy for web content. If the site doesn&rsquo;t offer the CSP header, browsers likewise use the standard same-origin policy. To enable CSP, you need to configure your web server to return the Content-Security-Policy HTTP header (sometimes you will see mentions of the X-Content-Security-Policy header, but that&rsquo;s an older version and you don&rsquo;t need to specify it anymore).</p>
+</blockquote>
+<p>So, the site here has enabled CSP and we;re asked to bypass it.</p>
+<p>Heading over to the Dev tools - (the fun part) - Press F12 -&gt; Network &gt; select our URL under the name &lsquo;challenge.intigriti.io&rsquo;</p>
+<p>We see the content-security-policy: default-src &lsquo;self&rsquo; - meaning a web site administrator wants all content to come from the site&rsquo;s own origin (this excludes subdomains).</p>
+<p><img src="/img/intigriti-xss-challenge/2.F12.png" alt="img"></p>
+<p>To know more about the CSP being implemented we can go to <a href="https://csp-evaluator.withgoogle.com/">https://csp-evaluator.withgoogle.com/</a></p>
+<p>Paste the site&rsquo;s url <a href="https://challenge.intigriti.io/">https://challenge.intigriti.io/</a> in the box and click Check CSP. It evaluates the CSP for us.</p>
+<p><img src="/img/intigriti-xss-challenge/3.csp-evaluator.png" alt="img"></p>
+<p>The &lsquo;object-src&rsquo; is really for older browsers so we can ignore it.</p>
+<h3 id="let-the-games-begin">Let the Games begin!</h3>
+<p>Firstly, let&rsquo;s start playing around.</p>
+<p>We can just write an alert(&quot;@inti and @stok rocks!&quot;); to check if the js is running correctly. We see the sweet pop-up.</p>
+<p>But we need to bypass the CSP in order to solve this challenge.</p>
+<p><img src="/img/intigriti-xss-challenge/4.inti-stok-rocks.png" alt="img"></p>
+<p>The good guy @securinti{twitter here} used this csp bypass payload -&gt;</p>
+<pre><code>var cspBypass = `&lt;script src=&quot;https://challenge.intigriti.io/script.js&quot;&lt;/script&gt;`
+</code></pre><p>And then</p>
+<pre><code>document.write(cspBypass);
+</code></pre><p>so the final script -&gt;</p>
+<pre><code>var cspBypass = `&lt;script src=&quot;https://challenge.intigriti.io/script.js&quot;&lt;/script&gt;`;
+document.write(cspBypass);
+</code></pre><p>Before we jump into that let&rsquo;s try putting the alert in place of the URL in the <code>&lt;script&gt;</code> tags</p>
+<pre><code>var cspBypass = `&lt;script src=alert(&quot;@inti and @stok rocks!&quot;)&lt;/script&gt;`
+</code></pre><p>Not allowed, as it violates the CSP directive.</p>
+<p>The &lsquo;alert&rsquo; code will not be on the server so will not execute as per the CSP directive the site implements.</p>
+<p><img src="/img/intigriti-xss-challenge/5.csp-violates.png" alt="img"></p>
+<p>So, it is confirmed that the CSP bypass payload must be on the site&rsquo;s page <a href="https://challenge.intigriti.io/">https://challenge.intigriti.io/</a> and not somewhere else.</p>
+<p>Let&rsquo;s start looking around for some interesting stuff. The page contains a dropdown list - 6 options are inside and the description is printed right underneath it.</p>
+<p>We can also observe the &lsquo;/#3&rsquo; on the URL bar. Here - 3rd option is selected and as per the JS code it will return that {option_no.txt}. And we know that the no. of options are 6.</p>
+<p><em>Feel free to ZOOM-IN if you can&rsquo;t view the screenshot.</em></p>
+<p><img src="/img/intigriti-xss-challenge/6.no.3.png" alt="img"></p>
+<p>Can we write something else than 1 to 6 here?</p>
+<p>I literally tried writing <code>something_else</code> and after a hard refresh (ctrl+shift+R), we see an error message 404.</p>
+<p><img src="/img/intigriti-xss-challenge/7.something-else.png" alt="img"></p>
+<p>But if we observe closely, it is not a valid 404 error page, it&rsquo;s just some text returned by the JS code.</p>
+<blockquote>
+<p>It looks normal at a glance but looking closely, we can see that &lsquo;404&rsquo; is an integer and the &lsquo;-&rsquo; sign followed by the &lsquo;string in quotes&rsquo;. So let&rsquo;s check if that returned text is valid JS or not in our dev tools console.</p>
+</blockquote>
+<p>Just copy-paste the text in the console and hit enter</p>
+<p><img src="/img/intigriti-xss-challenge/8.404-not-found.png" alt="img"></p>
+<blockquote>
+<p>We don&rsquo;t see any error message except the strange <code>NaN</code> - standing for &lsquo;Not a Number&rsquo;, meaning the JS is absolutely valid here. The 404 is coloured and so is the string. But the result of this JS code is NaN because &lsquo;we&rsquo; are trying to subtract a &lsquo;string&rsquo; from an integer which is impossible.</p>
+</blockquote>
+<p>Moving on, I just double clicked on our <code>something_else.txt</code> to bring a new tab for injecting code directly on the URL bar.</p>
+<p><img src="/img/intigriti-xss-challenge/9.png" alt="img"></p>
+<p><img src="/img/intigriti-xss-challenge/10.png" alt="img"></p>
+<p>So till now we have a valid javascript code with us only with a NaN. That&rsquo;s fine for now.</p>
+<p>Next, we&rsquo;ll try to add a JS code that makes some sense -&gt; an alert() maybe?</p>
+<p>It works! We have the sweet pop-up again.</p>
+<p>So what I did here is that I broke the string into 2 parts by adding a single quote (') and a &lsquo;+&rsquo;, wrote the JS code and again completed the string with a &lsquo;+&rsquo; and a quote (').</p>
+<p>I appended this on the URL -&gt;<code>'+alert(document.domain)+'</code> -&gt; we still get the 404 JS message but when we copy that JS in the console, we see the pop-up!</p>
+<p><img src="/img/intigriti-xss-challenge/11.alert-1.png" alt="img"></p>
+<p>Observe the difference between the 2 lines -&gt; the first gave us a <code>NaN</code> for subtracting string from a number but the second line did not show us any error and rendered the alert box.</p>
+<p>Going back a bit we know that we don’t want self-XSS and must do the CSP bypass.</p>
+<p>Let&rsquo;s replace the script tag contents in the <code>cspBypass</code> with the URL containing the alert() code and run it.</p>
+<pre><code>var jsLocation = &quot;https://challenge.intigriti.io/reasons/something_else.txt'+alert(document.domain)+'&quot;;
+var cspBypass = `&lt;script src=&quot;${jsLocation}&quot;&lt;/script&gt;`;
+document.write(cspBypass);
+</code></pre><p>Struggled a lot here because it was just not working.</p>
+<p>Then it struck me that I was using &lsquo;+&rsquo; that means string append. Maybe JS is not considering this a valid string and not rendering it, so I replace it with a &lsquo;-&rsquo; and it worked!</p>
+<p>I ran it twice for it to work. Strange behaviour sometimes.</p>
+<p><img src="/img/intigriti-xss-challenge/12.struggle.png" alt="img"></p>
+<p>So the final payload -&gt;</p>
+<pre><code>var jsLocation = &quot;https://challenge.intigriti.io/reasons/something_else.txt'-alert(document.domain)-'&quot;;
+var cspBypass = `&lt;script src=&quot;${jsLocation}&quot;&lt;/script&gt;`;
+document.write(cspBypass);
+</code></pre><p>Running test JS code we used earlier again -&gt;</p>
+<p>Using &lsquo;+&rsquo; -&gt;  pop up appeared and after closing it, we see the result -&gt;</p>
+<p><img src="/img/intigriti-xss-challenge/13-plus.png" alt="img"></p>
+<p>Using &lsquo;-&rsquo; gave me <code>NaN</code> -&gt; pop up appeared and after closing it -&gt;</p>
+<p><img src="/img/intigriti-xss-challenge/13-minus.png" alt="img"></p>
+<p>Maybe due to the earlier result, JS was not triggering the alert when we tried to CSP bypass it (Step 19).</p>
+<p>I thought that the challenge was over here for a second but I learnt that till now, we have done only a POC for the CSP bypass but we still have only a self-xss.</p>
+<pre><code>OK. So this still won't be run from the server.
+
+Figuring out how we do it -&gt; In the dev tools heading over to the script.js -&gt;
+</code></pre>
+<p><img src="/img/intigriti-xss-challenge/13-script.js.png" alt="img"></p>
+<blockquote>
+<p>We have the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML"><code>innerHTML</code></a> parameter of the <code>Element</code> class</p>
+</blockquote>
+<p><img src="/img/intigriti-xss-challenge/14.inner-html-1.png" alt="img"></p>
+<p><img src="/img/intigriti-xss-challenge/15.inner-html-2.png" alt="img"></p>
+<p>With all the above information, remove the <code>document.write()</code> and add the <code>reason</code> variable into our code and pass it the <code>cspBypass</code>.</p>
+<pre><code>var jsLocation = &quot;https://challenge.intigriti.io/reasons/something_else.txt'-alert(document.domain)-'&quot;;
+var cspBypass = `&lt;script src=&quot;${jsLocation}&quot;&lt;/script&gt;`;
+var reason = document.getElementById(&quot;reason&quot;);
+reason.innerHTML = cspBypass;
+</code></pre><p>Hard refresh and run.</p>
+<p><img src="/img/intigriti-xss-challenge/16.png" alt="img"></p>
+<p>It doesn’t work.</p>
+<p>But why?</p>
+<p>It seems that it doesn&rsquo;t load external scripts and features. We must invoke it after the page has loaded.</p>
+<p>An <code>&lt;iframe&gt;</code> maybe? The <code>&lt;iframe&gt;</code> tag specifies an inline frame. An inline frame is used to embed another document within the current HTML document. With the <code>&lt;iframe&gt;</code> we will use the <code>srcdoc</code> attribute for the HTML injection in order to perform XSS from the server side (stored).</p>
+<p><img src="/img/intigriti-xss-challenge/17.src-doc.png" alt="img"></p>
+<p>We will do this as follows - In the JS console -</p>
+<ol>
+<li>Create a new <code>&lt;iframe&gt;</code> element.</li>
+</ol>
+<blockquote>
+</blockquote>
+<ol start="2">
+<li>Assign the <code>cspBypass</code> payload to <code>iframe.srcdoc</code>.</li>
+</ol>
+<blockquote>
+</blockquote>
+<ol start="3">
+<li>And assign the<code>iframe.outerHTML</code> i.e (<code>framedCspBypass</code>) to <code>reason.innerHTML</code>.</li>
+</ol>
+<blockquote>
+</blockquote>
+<pre><code>var jsLocation = &quot;https://challenge.intigriti.io/reasons/something_else.txt'-alert(document.domain)-'&quot;;
+var cspBypass = `&lt;script src=&quot;${jsLocation}&quot;&lt;/script&gt;`;
+
+var iframe = document.createElement(&quot;iframe&quot;); //iframe element created
+iframe.srcdoc = cspBypass;
+var framedCspBypass = iframe.outerHTML; 
+
+var reason = document.getElementById(&quot;reason&quot;);
+reason.innerHTML = framedCspBypass;
+</code></pre><p>We get the following result -&gt;</p>
+<pre><code>&quot;&lt;iframe srcdoc=&quot;&lt;script src=&amp;quot;https://challenge.intigriti.io/reasons/something_else.txt'-alert(document.domain)-'&amp;quot;&lt;/script&gt;&quot;&gt;&lt;/iframe&gt;&quot;
+</code></pre><p>It did not work earlier.</p>
+<p>Turned out it was a stupid syntax error -&gt; I had forgotten to close the <code>&lt;script src = &quot;....&quot;&gt;</code>.</p>
+<p>Rest assured, I have fixed it in the above code already. A big lesson learnt - always pay attention to the syntax.</p>
+<p><img src="/img/intigriti-xss-challenge/18.iframe-alert.png" alt="img"></p>
+<p>As we can see after running the above script, we have an <code>iframe</code> which contains our XSS payload but we can’t stop here we have to make an HTML injection to exploit it.</p>
+<p>Inspecting the <code>iframe</code> element -&gt;</p>
+<p><img src="/img/intigriti-xss-challenge/19.iframe-source.png" alt="img"></p>
+<p>OK, so where can we have our our HTML injection?</p>
+<p>Earlier, we had got a 404 message which contained only JS code.</p>
+<p>How can we get a similar message -  only this time a real one - when we try to access something which is <em>not present</em> on the server?</p>
+<p>Answer: Either a &lsquo;page not found 404&rsquo; or a &lsquo;forbidden 403&rsquo;.</p>
+<p>Let&rsquo;s try 403 first -&gt; by accessing <code>/.htaccess</code>.</p>
+<blockquote>
+<p>An .htaccess (hypertext access) file is a directory-level configuration file supported by several web servers, used for configuration of website-access issues, such as URL redirection, URL shortening, access control (for different web pages and files), and more. The &lsquo;dot&rsquo; (period or full stop) before the file name makes it a hidden file in Unix-based environments.</p>
+</blockquote>
+<p><img src="/img/intigriti-xss-challenge/20.403.png" alt="img"></p>
+<p>I tried to also put some JS and it did not run here. It took it as plaintext.</p>
+<p>How can we bypass that? We go back to the script.js and observe that the script is using <code>unescape()</code> to decode strings.</p>
+<p><img src="/img/intigriti-xss-challenge/21.unescape.png" alt="img"></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/unescape">unescape</a></p>
+<p><img src="/img/intigriti-xss-challenge/22.unescape-syntax.png" alt="img"></p>
+<p><img src="/img/intigriti-xss-challenge/23.unescape-example.png" alt="img"></p>
+<p>Now, the browser by default single-decodes characters in the address bar so in order to trick the browser we must double encode the URI component.</p>
+<p>Ok.</p>
+<p>So till now, we could bypass the CSP, get the <code>iframe</code> for HTML injection. But when we try to inject HTML it won&rsquo;t execute, as it requires decoding we discussed above.</p>
+<p>For Demo purposes looking at the homepage -&gt;</p>
+<p><img src="/img/intigriti-xss-challenge/24.demo.png" alt="img"></p>
+<p>To solve it, we have to define 2 functions and give 1 call. That&rsquo;s it.</p>
+<pre><code>//1. 
+function getXSS(content){
+	window.open(&quot;https://challenge.intigriti.io/#.htaccess&quot;+content);
+}
+//or window.open(&quot;https://challenge.intigriti.io/#.ht&quot;+content);
+</code></pre><pre><code>//2. 
+function doubleEncode(string){
+    return encodeURIComponent(encodeURIComponent(string));
+}
+</code></pre><pre><code>//3. call -
+getXSS(doubleEncode(framedCspBypass));
+</code></pre><p>So, the FINAL CODE -&gt;</p>
+<pre><code>var jsLocation = &quot;https://challenge.intigriti.io/reasons/something_else.txt'-alert(document.domain)-'&quot;;
+var cspBypass = `&lt;script src=&quot;${jsLocation}&quot;&gt;&lt;/script&gt;`;
+	
+var iframe = document.createElement(&quot;iframe&quot;);
+iframe.srcdoc = cspBypass;
+var framedCspBypass = iframe.outerHTML;
+	
+function getXSS(content){
+	window.open(&quot;https://challenge.intigriti.io/#.htaccess&quot;+content);
+}
+//or window.open(&quot;https://challenge.intigriti.io/#.ht&quot;+content);
+
+function doubleEncode(string){
+    return encodeURIComponent(encodeURIComponent(string));
+}
+</code></pre><p>Now, call the <code>getXSS</code> function -</p>
+<pre><code>getXSS(doubleEncode(framedCspBypass));
+</code></pre><p><img src="/img/intigriti-xss-challenge/25.final-xss-source.png" alt="img"></p>
+<p>After calling the <code>getXSS</code> function, it opens a new tab and it triggers the XSS!</p>
+<p><img src="/img/intigriti-xss-challenge/26.final-xss-alert.png" alt="img"></p>
+<blockquote>
+<hr>
+<p>We have solved the challenge!</p>
+<p>The End.</p>
+<hr>
+</blockquote>
+<h3 id="closing-remarks">Closing Remarks</h3>
+<p>I hope you all enjoyed this and learnt something really cool!</p>
+<p>A big-big shoutout to <a href="https://twitter.com/stokfredrik" title="Follow STOK">@stok</a> and <a href="https://twitter.com/securinti" title="Follow Inti De Ceukelaire">@securinti</a> for simplifying this Himalayan challenge! I had watched the video at least 13-15 times while taking notes and watched again while writing this blog. That&rsquo;s why it took so long for this post.</p>
+<blockquote>
+<h4 id="takeaways">Takeaways:</h4>
+<ol>
+<li>We learnt what is CSP and how to bypass it.</li>
+<li>We understood the importance of stored-XSS exploits.</li>
+<li>We learnt a little bit of JavaScript and how to write JS functions.</li>
+<li>We got to know about <code>iframe</code> and the <code>unescape</code> function.</li>
+<li>Above all, we did everything using only the browser&rsquo;s developer tools and not Burp Suite!</li>
+</ol>
+</blockquote>
+<p>Please provide your feedback if you like it or have any suggestions.</p>
+<p>Please share this post on your favourite social-media platforms and with your friends.</p>
+<blockquote>
+<p>Many thanks once again.</p>
+<p>Good-bye until next time.</p>
+<blockquote>
+<p><em>Stay n00b. Stay Humble</em>.</p>
+</blockquote>
+</blockquote>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/htb-walkthrough-solidstate/">
+                  <span class="button__text">Unboxing SolidState</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        
+<hr>
+
+<div>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; display: block;margin-left: auto; margin-right: auto;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    <br>This work is licensed under a<br>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 by Kshitij Badkas. Some rights reserved.</span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+
+      </div>
+    
+  </div>
+
+
+
+
+
+
+</footer>
+
+
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

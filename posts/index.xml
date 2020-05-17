@@ -6,10 +6,20 @@
     <description>Recent content in Posts on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 10:48:17 +0530</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 11:18:30 +0530</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Solving Intigriti Easter XSS Challenge without Burp Suite!</title>
+      <link>/posts/intigriti-xss-challenge/</link>
+      <pubDate>Wed, 06 May 2020 11:18:30 +0530</pubDate>
+      
+      <guid>/posts/intigriti-xss-challenge/</guid>
+      <description>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
+ Introduction The Intigriti Easter XSS challenge was open from April 13 to Aril 19. I know I&amp;rsquo;m a little late to the party but this challenge took a lot of time for me to understand. Like many, I couldn&amp;rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it.</description>
+    </item>
     
     <item>
       <title>Unboxing SolidState</title>

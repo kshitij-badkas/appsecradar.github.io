@@ -4,12 +4,62 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/bug-bounty/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
   </url>
   
   <url>
     <loc>/categories/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/real-life/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/intigriti-xss-challenge/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/walkthrough/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/web-app/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/web-app/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/web-challenge/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/xss/</loc>
+    <lastmod>2020-05-06T11:18:30+05:30</lastmod>
   </url>
   
   <url>
@@ -44,21 +94,6 @@
   
   <url>
     <loc>/categories/oscp/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/real-life/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-04-12T10:48:17+05:30</lastmod>
   </url>
   
