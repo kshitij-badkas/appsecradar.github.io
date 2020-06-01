@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>Solving Intigriti May XSS Challenge without Burp Suite! :: APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content="Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
+ Introduction The Intigriti May XSS challenge was open from May 11 to May 17. Like the Easter-Challenge, this challenge also took a lot of time for me to understand and replicate. Like many, I couldn&amp;rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it."/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="/posts/intigriti-may-xss-challenge/" />
+
+
+
+
+
+<link rel="stylesheet" href="/assets/style.css">
+
+
+<link rel="stylesheet" href="/style.css">
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/arrow-p-2.png">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Solving Intigriti May XSS Challenge without Burp Suite!"/>
+<meta name="twitter:description" content="As promised, I am back with a new post. Today we&#39;re going to solve the Intigriti&#39;s May XSS challenge using only the Browser&#39;s Developer Tools and without Burp Suite! This challenge is not live right now but it&#39;s still open for you to try to solve it. The writeup is _&#39;relatively&#39;_ short but fun to follow. So let&#39;s just jump in! A big Thank-You to [@stokfredrik](https://twitter.com/stokfredrik &#34;Follow STOK&#34;), [@filedescriptor](https://twitter.com/filedescriptor &#34;Follow filedescriptor&#34;), [securinti](https://twitter.com/securinti &#34;Follow Inti De Ceukelaire&#34;) and the [@intigriti](https://twitter.com/intigriti) team for letting us know about this awesome challenge."/>
+
+
+
+<meta property="og:title" content="Solving Intigriti May XSS Challenge without Burp Suite!" />
+<meta property="og:description" content="As promised, I am back with a new post. Today we&#39;re going to solve the Intigriti&#39;s May XSS challenge using only the Browser&#39;s Developer Tools and without Burp Suite! This challenge is not live right now but it&#39;s still open for you to try to solve it. The writeup is _&#39;relatively&#39;_ short but fun to follow. So let&#39;s just jump in! A big Thank-You to [@stokfredrik](https://twitter.com/stokfredrik &#34;Follow STOK&#34;), [@filedescriptor](https://twitter.com/filedescriptor &#34;Follow filedescriptor&#34;), [securinti](https://twitter.com/securinti &#34;Follow Inti De Ceukelaire&#34;) and the [@intigriti](https://twitter.com/intigriti) team for letting us know about this awesome challenge." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/intigriti-may-xss-challenge/" />
+<meta property="article:published_time" content="2020-06-01T14:56:23+05:30" />
+<meta property="article:modified_time" content="2020-06-01T14:56:23+05:30" /><meta property="og:site_name" content="APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES" />
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">about</a></li>
+        
+      
+        
+          <li><a href="/contact">contact</a></li>
+        
+      
+      
+    
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">about</a></li>
+      
+    
+      
+        <li><a href="/contact">contact</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h2 class="post-title"><a href="/posts/intigriti-may-xss-challenge/">Solving Intigriti May XSS Challenge without Burp Suite!</a></h2>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2020-06-01
+        </span>
+
+        
+          
+        
+      
+
+      
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="/tags/xss/">XSS</a>&nbsp;
+        
+          #<a href="/tags/web-app/">web-app</a>&nbsp;
+        
+          #<a href="/tags/real-life/">real-life</a>&nbsp;
+        
+          #<a href="/tags/walkthrough/">walkthrough</a>&nbsp;
+        
+          #<a href="/tags/bug-bounty/">bug-bounty</a>&nbsp;
+        
+      </span>
+    
+
+    
+      
+        <img src="/img/intigriti-may-xss-challenge/1.intigriti-may-xss-challenge.png" class="post-cover" />
+      
+    
+
+    <div class="post-content">
+      <blockquote>
+<p><em>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.</em></p>
+</blockquote>
+<h3 id="introduction">Introduction</h3>
+<p>The Intigriti May XSS challenge was open from May 11 to May 17. Like the <a href="https://appsecradar.net/posts/intigriti-xss-challenge/">Easter-Challenge</a>, this challenge also took a lot of time for me to understand and replicate. Like many, I couldn&rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it. After much waiting, our dear <a href="https://twitter.com/stokfredrik" title="Follow STOK">@stokfredrik</a>, mentioned in his <a href="https://www.youtube.com/watch?v=qSkjJxW_xgk">Bounty Thursdays</a> video that the solution is already up. Like before, to solve this challenge, there are some conditions we&rsquo;re given. Let&rsquo;s start by looking at the hints and let the fun begin!</p>
+<h3 id="the-hints">The Hints</h3>
+<p>We are already provided with 2 Hints.</p>
+<p><img src="/img/intigriti-may-xss-challenge/2.hints.png" alt="img"></p>
+<p>That it will work only on Firefox and like before no self-XSS.</p>
+<p>Why no self-XSS is explained the <a href="https://appsecradar.net/posts/intigriti-xss-challenge/">previous post</a>. Do it check it out for details.</p>
+<h3 id="let-the-games-begin">Let the Games begin!</h3>
+<p>We will start by identifying the source and sink.
+The URL has no parameter so we can assume that this must be DOM XSS as server doesn’t take any input from the user.</p>
+<p>Checking the source code by using the Developer tools by pressing F12 &gt; Debugger, we find a JavaScript file <code>widgets.js</code>. Using the <code>'{}'</code> icon to decorate the script for better readability.</p>
+<p><img src="/img/intigriti-may-xss-challenge/4.widgets-js-src.png" alt="img"></p>
+<p>We find a huge fucntion on the very first line of the code. Scrolling the page to the right.</p>
+<p><img src="/img/intigriti-may-xss-challenge/5.widgets-js-function.png" alt="img"></p>
+<p>Is it twitter widgets script?</p>
+<p>I searched for the word <code>twitter</code> in the script using <code>ctrl+f</code></p>
+<p><img src="/img/intigriti-may-xss-challenge/6.twitter-search.png" alt="img"></p>
+<p>Indeed, it’s a twitter widgets script with so many occurrences of &lsquo;twitter&rsquo;</p>
+<p>Copying the first line and searching on google will tell us that the <code>widgets.js</code> is an exact copy of twitter widget library!</p>
+<p><img src="/img/intigriti-may-xss-challenge/7.twitter-library.png" alt="img"></p>
+<p>OK, but what good will that do?</p>
+<p>Well, we shouldn’t be looking for XSS here in the twitter widget library. The challenge might not require us to hack twitter&rsquo;s libraries.</p>
+<p>So for the sake of solving the challenge, we will skip finding &lsquo;0-days&rsquo; in Twitter for now.😉</p>
+<p>As we can see, we haven&rsquo;t found any source or sink as of yet.</p>
+<p>This is the JavaScript file we have found - <code>widgets.js</code> and we can access it from <a href="https://challenge.intigriti.io/widgets.js">https://challenge.intigriti.io/widgets.js</a></p>
+<p><img src="/img/intigriti-may-xss-challenge/8.widgets-js-2.png" alt="img"></p>
+<p>What if I give some other path? For eg. <a href="https://challenge.intigriti.io/hacked/widgets.js">https://challenge.intigriti.io/hacked/widgets.js</a>. The website breaks and it&rsquo;s clearly visible that the look-and-feel is completely different from the original site.</p>
+<p><img src="/img/intigriti-may-xss-challenge/9.breaks.png" alt="img"></p>
+<p>What happened here? And moreover - Why?</p>
+<p>Looking at the source code once again will reveal the answer to us that the URL is looking for a relative path and not the absolute one.</p>
+<blockquote>
+<p>A relative file path points to a file relative to the current page. We are trying to access <code>widgets.js</code> from a non-existent directory which breaks the site.</p>
+</blockquote>
+<p><img src="/img/intigriti-may-xss-challenge/11.src.png" alt="img"></p>
+<blockquote>
+<p>Relative vs Absolute - very well explained <a href="http://www.thespanner.co.uk/2014/03/21/rpo/">here</a></p>
+</blockquote>
+<blockquote>
+<p>An absolute URL is basically the full URL for a destination address including the protocol and domain name whereas a relative URL doesn’t specify a domain or protocol and uses the existing destination to determine the protocol and domain.</p>
+<p>Absolute URL
+<code>https://somesite.com/public</code></p>
+<p>Relative URL
+<code>public/somedirectory</code></p>
+</blockquote>
+<blockquote>
+<p>The relative URL shown will look for public and automatically include the domain before it based on the current domain name. There are two important variations of a relative URL, the first is we can use the current path and look for a directory within it such as “xyz” or use common directory traversal techniques such as “../xyz”. To see how these work within markup let’s take a look at a common relative URL used within a stylesheet.</p>
+</blockquote>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">html</span>&gt;
+&lt;<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;styles.css&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span> /&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+&lt;<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div><blockquote>
+<p>The link element above references “style.css” is using a relative URL, depending where in the site&rsquo;s directory structure you are it will load the style sheet based on that.
+For example if you were in a directory called “xyz” then the style sheet would be loaded from “xyz/style.css”.</p>
+</blockquote>
+<blockquote>
+<p>The interesting aspect of this is how the browser knows what a correct path is since it doesn’t have access to the server’s file system. The answer is it doesn’t. There is no way to determine a valid directory structure from outside the file system you can only make educated guesses and use http status codes to determine their existence.</p>
+</blockquote>
+<p>That wasn&rsquo;t that difficult to understand.</p>
+<p>OK, so can we do something with the page such that it loads a malicious JS file containing an XSS payload from some other location?</p>
+<p>The answer is YES.</p>
+<p>But how do we achieve this?</p>
+<blockquote>
+<p>We have to play with the file-paths and redirections.</p>
+</blockquote>
+<p>For demonstration purposes - using the double-slashes <code>//</code>, we can redirect the page to some other site eg. <a href="https://challenge.intigriti.io//google.com/widgets.js">https://challenge.intigriti.io//google.com/widgets.js</a> will redirect us to google&rsquo;s homepage.</p>
+<p><img src="/img/intigriti-may-xss-challenge/12.open-redirection-demo.png" alt="img"></p>
+<p>Using this behaviour, we can redirect to a malicious site -&gt;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">https://challenge.intigriti.io//hacked/
+</code></pre></div><p>The page won’t redirect and throw a 404 in this case because <code>https://hacked</code> does not exist. But it does redirect and tries to load it.</p>
+<p>Now, we can craft our payload in such a way that the payload executes because of the open redirection -&gt; will contain our XSS payload and it will trigger when the site loads.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">https://challenge.intigriti.io//hacked
+</code></pre></div><blockquote>
+<p>But here is the catch, by doing so, the payload will try to execute on &lsquo;hacked&rsquo; domain due to the redirection behaviour.</p>
+</blockquote>
+<p>We must find a way in order to remain on the same site and execute our payload there itself but using the open redirection behaviour.</p>
+<p>It&rsquo;s simple.</p>
+<p>By using the &lsquo;<code>..</code>&rsquo; UNIX-style directory navigation or traversal technique to move up (go back) one directory.</p>
+<p>The URL will be</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">https://challenge.intigriti.io//hacked/..
+</code></pre></div><p>But this still doesn&rsquo;t help us. The browser ignores the <code>..</code> and loads the home page <a href="https://challenge.intigriti.io">https://challenge.intigriti.io</a> instead.</p>
+<blockquote>
+<p>Hmm, how do we bypass this?</p>
+</blockquote>
+<p>It&rsquo;s very simple - using URL-encoding! <code>..</code> will be encoded as <code>%2e%2e</code>.</p>
+<p>Our payload will look like this -</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">https://challenge.intigriti.io//hacked/%2e%2e
+</code></pre></div><p>But this won&rsquo;t help us directly. There must be some JavaScript written on &lsquo;hacked&rsquo; so that on loading the page will trigger it.</p>
+<p>Filedescriptor has used a page <code>innerht.ml</code> containing the XSS payload which will trigger when redirected.</p>
+<p>The final payload will be -</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">https://challenge.intigriti.io//innerht.ml/%2e%2e
+</code></pre></div><p>And we see the sweet pop-up!</p>
+<p><img src="/img/intigriti-may-xss-challenge/13.solved.png" alt="img"></p>
+<p>Good, we will just take a moment to revise what we did.</p>
+<blockquote>
+<p>Server side : <code>https://challenge.intigriti.io//innerht.ml/%2e%2e</code> traverses back to its root i.e the challenge site.</p>
+</blockquote>
+<blockquote>
+<p>Client side (browser): Thinks that the current directory is the open-redictor <code>innerht.ml</code> and triggers the payload.</p>
+</blockquote>
+<blockquote>
+<p>This is called RPO.</p>
+<p>RPO (Relative Path Overwrite) is a technique to take advantage of relative URLs by overwriting their target file.</p>
+</blockquote>
+<p>This screenshot is from the solution video -
+<img src="/img/intigriti-may-xss-challenge/14.explanation.png" alt="img"></p>
+<blockquote>
+<hr>
+<p>We have solved the challenge!</p>
+<p>The End.</p>
+<hr>
+</blockquote>
+<h3 id="closing-remarks">Closing Remarks</h3>
+<p>I hope you all enjoyed this article and learnt something really cool!</p>
+<p>A big-big shoutout to <a href="https://twitter.com/filedescriptor" title="Follow filedescriptor">@filedescriptor</a> for the solution video! I had watched the video at least 20 times while taking notes and watched a few more times while writing this blog.</p>
+<blockquote>
+<h4 id="takeaways">Takeaways:</h4>
+<ol>
+<li>We learnt what is RPO technique.</li>
+<li>We solved this challenge using RPO and Open Direction.</li>
+<li>We can club RPO with &lsquo;file upload references&rsquo; or &lsquo;referencing other pages&rsquo;.</li>
+<li>And once again, we did everything using only the browser&rsquo;s developer tools and not Burp Suite!</li>
+</ol>
+</blockquote>
+<p>Please provide your feedback if you like it or have any suggestions.</p>
+<p>Please share this post on your favourite social-media platforms and with your friends.</p>
+<blockquote>
+<p>Many thanks once again.</p>
+<p>Good-bye until next time.</p>
+<blockquote>
+<p><em>Stay n00b. Stay Humble</em>.</p>
+</blockquote>
+</blockquote>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h">Read other posts</span>
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/posts/intigriti-xss-challenge/">
+                  <span class="button__text">Solving Intigriti Easter XSS Challenge without Burp Suite!</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+
+    
+      
+        
+
+      
+    
+
+    </div>
+
+      </div>
+
+      
+        
+<hr>
+
+<div>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0; display: block;margin-left: auto; margin-right: auto;" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
+    <br>This work is licensed under a<br>
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="/" class="logo" style="text-decoration: none;">
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367"/>
+</svg>
+</span>
+    <span class="logo__text">appsecradar.net</span>
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2020 by Kshitij Badkas. Some rights reserved.</span>
+        <span>Theme created by <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span>
+
+      </div>
+    
+  </div>
+
+
+
+
+
+
+</footer>
+
+
+
+<script src="/assets/main.js"></script>
+<script src="/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

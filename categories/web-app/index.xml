@@ -6,10 +6,20 @@
     <description>Recent content in Web-App on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 May 2020 11:18:30 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2020 14:56:23 +0530</lastBuildDate>
     
 	<atom:link href="/categories/web-app/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Solving Intigriti May XSS Challenge without Burp Suite!</title>
+      <link>/posts/intigriti-may-xss-challenge/</link>
+      <pubDate>Mon, 01 Jun 2020 14:56:23 +0530</pubDate>
+      
+      <guid>/posts/intigriti-may-xss-challenge/</guid>
+      <description>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
+ Introduction The Intigriti May XSS challenge was open from May 11 to May 17. Like the Easter-Challenge, this challenge also took a lot of time for me to understand and replicate. Like many, I couldn&amp;rsquo;t solve it during the challenge days and waited for someone to post a writeup so that I can follow along and solve it.</description>
+    </item>
     
     <item>
       <title>Solving Intigriti Easter XSS Challenge without Burp Suite!</title>
