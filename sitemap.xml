@@ -4,7 +4,47 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2020-06-01T14:56:23+05:30</lastmod>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/buffer-overflows/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/oscp/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/oscp/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/reverse-engineering/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/posts/simplifying-buffer-overflows-for-oscp/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-06-08T11:49:40+05:30</lastmod>
   </url>
   
   <url>
@@ -18,27 +58,12 @@
   </url>
   
   <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-06-01T14:56:23+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/posts/</loc>
-    <lastmod>2020-06-01T14:56:23+05:30</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/real-life/</loc>
     <lastmod>2020-06-01T14:56:23+05:30</lastmod>
   </url>
   
   <url>
     <loc>/posts/intigriti-may-xss-challenge/</loc>
-    <lastmod>2020-06-01T14:56:23+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
     <lastmod>2020-06-01T14:56:23+05:30</lastmod>
   </url>
   
@@ -94,16 +119,6 @@
   
   <url>
     <loc>/tags/medium/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/oscp/</loc>
-    <lastmod>2020-04-12T10:48:17+05:30</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/oscp/</loc>
     <lastmod>2020-04-12T10:48:17+05:30</lastmod>
   </url>
   

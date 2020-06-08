@@ -6,10 +6,21 @@
     <description>Recent content in OSCP on APPSECRADAR :: HACKING | CODING | BLOGS &amp; GOOD VIBES</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 10:48:17 +0530</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jun 2020 11:49:40 +0530</lastBuildDate>
     
 	<atom:link href="/tags/oscp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Simplifying Buffer Overflows for OSCP</title>
+      <link>/posts/simplifying-buffer-overflows-for-oscp/</link>
+      <pubDate>Mon, 08 Jun 2020 11:49:40 +0530</pubDate>
+      
+      <guid>/posts/simplifying-buffer-overflows-for-oscp/</guid>
+      <description>Disclaimer: All the content posted here is strictly for educational purposes only. The author is not responsible for any harm caused using this content in any other way apart from the one intented.
+ Introduction As the title suggests we will simplify and learn about buffer overflows for the OSCP exam.
+While learning about the much-dreaded and (over)hyped topic of &amp;lsquo;Buffer Overflows&amp;rsquo;, I was always scared as it was so much to learn.</description>
+    </item>
     
     <item>
       <title>Unboxing SolidState</title>
